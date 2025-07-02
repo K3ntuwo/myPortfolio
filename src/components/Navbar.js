@@ -6,15 +6,9 @@
   import Button from "react-bootstrap/Button";
   import { Link } from "react-router-dom";
   import { CgGitFork } from "react-icons/cg";
-  import { ImBlog } from "react-icons/im";
   import {
-    AiFillStar,
-    AiOutlineHome,
-    AiOutlineFundProjectionScreen,
-    AiOutlineUser,
+    AiFillStar
   } from "react-icons/ai";
-
-  import { CgFileDocument } from "react-icons/cg";
 
   function NavBar() {
     const [expand, updateExpanded] = useState(false);
@@ -75,15 +69,6 @@
                   onClick={() => updateExpanded(false)}
                 >
                   Projects
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  as={Link}
-                  to="/experience"
-                  onClick={() => updateExpanded(false)}
-                >
-                  Experience
                 </Nav.Link>
               </Nav.Item>
 
