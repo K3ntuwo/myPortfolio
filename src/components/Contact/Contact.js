@@ -10,20 +10,34 @@ const EmailSection = () => {
   const [notification, setNotification] = useState({ message: '', type: '' });
 
   const sendEmail = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    emailjs
-      .sendForm('service_t7ajcqn', 'template_t6wdoke', form.current, '0ZVREcFPnhMaec_5t')
-      .then(
-        () => {
-          setNotification({ message: 'Message sent successfully!', type: 'success' });
-          form.current.reset();
-        },
-        (error) => {
-          setNotification({ message: `Failed to send message: ${error.text}`, type: 'error' });
-        }
-      );
-  };
+  const emailInput = form.current.querySelector('input[name="email"]');
+  const email = emailInput?.value || '';
+
+  const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+
+  if (!isGmail) {
+    setNotification({
+      message: 'Please enter a valid Gmail address only (e.g., example@gmail.com)',
+      type: 'error'
+    });
+    return;
+  }
+
+  emailjs
+    .sendForm('service_t7ajcqn', 'template_t6wdoke', form.current, '0ZVREcFPnhMaec_5t')
+    .then(
+      () => {
+        setNotification({ message: 'Message sent successfully!', type: 'success' });
+        form.current.reset();
+      },
+      (error) => {
+        setNotification({ message: `Failed to send message: ${error.text}`, type: 'error' });
+      }
+    );
+};
+
 
   useEffect(() => {
     if (notification.message) {
@@ -53,10 +67,10 @@ const EmailSection = () => {
             <a href="https://github.com/K3ntuwo" target="_blank" rel="noopener noreferrer" className="text-white fs-4 social-icon">
               <FaGithub />
             </a>
-            <a href="https://www.instagram.com/smei_clnoo" target="_blank" rel="noopener noreferrer" className="text-white fs-4 social-icon">
+            <a href="https://www.instagram.com/itsme.ad1e" target="_blank" rel="noopener noreferrer" className="text-white fs-4 social-icon">
               <FaInstagram />
             </a>
-            <a href="https://www.facebook.com/smei.clnoo?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-white fs-4 social-icon">
+            <a href="https://www.facebook.com/itsme.ad1e" target="_blank" rel="noopener noreferrer" className="text-white fs-4 social-icon">
               <FaFacebook />
             </a>
           </div>
